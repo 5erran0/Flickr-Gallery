@@ -1,2 +1,4 @@
-include ':app', ':data'
+include ':app'
+include ':domain'
+include ':data'
 rootProject.name = 'Flirckr Gallery'
