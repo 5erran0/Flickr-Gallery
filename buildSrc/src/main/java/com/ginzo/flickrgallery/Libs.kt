@@ -6,6 +6,13 @@ object Libs {
 
     val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
+    object coroutines {
+      val version = "1.3.2"
+
+      val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
+      val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
+    }
+
     object gradle {
       val core = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
       val allopen = "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion"
@@ -18,6 +25,7 @@ object Libs {
 
   object androidx {
     val appCompat = "androidx.appcompat:appcompat:1.0.2"
+    val lifecycle = "androidx.lifecycle:lifecycle-common-java8:2.0.0"
   }
 
   object google {
