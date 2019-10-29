@@ -4,8 +4,8 @@ import com.ginzo.flirckrgallery.main.di.MainFactory
 import com.ginzo.flirckrgallery.main.di.MainFactoryImpl
 import di.DataFactory
 import di.DataFactoryImpl
-import entities.DomainFactory
-import entities.DomainFactoryImpl
+import di.DomainFactory
+import di.DomainFactoryImpl
 
 class DependencyInjectorManager {
 

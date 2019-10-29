@@ -29,7 +29,7 @@ class MainPresenter constructor(
   }
 
   private suspend fun getFlickrImages() {
-    val text = searchPhotosUseCase.search("")
-    view.render(MainViewState.ShowingFlickrImages(text))
+    val photoPage = searchPhotosUseCase.search("")
+    view.render(MainViewState.ShowingFlickrImages(photoPage.photos.joinToString { it.title + " " }))
   }
 }

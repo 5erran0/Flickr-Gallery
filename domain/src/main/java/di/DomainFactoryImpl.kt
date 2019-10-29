@@ -1,4 +1,4 @@
-package entities
+package di
 
 import repositories.FlickrRepository
 import usecases.SearchPhotosUseCase
