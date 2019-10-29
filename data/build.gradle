@@ -6,4 +6,8 @@ dependencies {
     implementation project(':domain')
 
     implementation Libs.coreKtx
+
+    implementation Libs.kotlin.coroutines.core
+    implementation Libs.kotlin.coroutines.android
+
 }

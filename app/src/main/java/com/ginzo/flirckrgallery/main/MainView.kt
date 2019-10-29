@@ -1,4 +1,4 @@
-package com.ginzo.flirckrgallery
+package com.ginzo.flirckrgallery.main
 
 interface MainView {
   fun render(state: MainViewState)
