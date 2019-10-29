@@ -10,8 +10,8 @@ import kotlinx.coroutines.launch
 import usecases.SearchPhotosUseCase
 
 class MainPresenter constructor(
-    private val view: MainView,
-    private val searchPhotosUseCase: SearchPhotosUseCase
+  private val view: MainView,
+  private val searchPhotosUseCase: SearchPhotosUseCase
 ) : DefaultLifecycleObserver {
 
   private lateinit var mainScope: CoroutineScope

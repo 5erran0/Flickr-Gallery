@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity(), MainView {
     setContentView(R.layout.activity_main)
 
     presenter = (application as MainFactoryProvider).mainFactory
-        .provideMainPresenter(this)
+      .provideMainPresenter(this)
 
     lifecycle.addObserver(presenter)
   }

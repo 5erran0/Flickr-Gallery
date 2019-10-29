@@ -8,7 +8,8 @@ import repositories.FlickrRepository
 class DataFactoryImpl : DataFactory {
   private fun provideFlickrApiRest(): FlickrApiRest = FlickrApiRest()
 
-  private fun provideFlickrApiRepository(): FlickrApiRepository = FlickrApiRepository(provideFlickrApiRest())
+  private fun provideFlickrApiRepository(): FlickrApiRepository =
+    FlickrApiRepository(provideFlickrApiRest())
 
   override fun provideFlickrRepository(): FlickrRepository {
     return FlickrDataRepository(provideFlickrApiRepository())

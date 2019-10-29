@@ -6,13 +6,13 @@ import com.ginzo.flirckrgallery.main.di.MainFactoryProvider
 
 class FlickrGalleryApp : Application(), MainFactoryProvider {
 
-    private lateinit var diManager: DependencyInjectorManager
+  private lateinit var diManager: DependencyInjectorManager
 
-    override fun onCreate() {
-        super.onCreate()
-        diManager = DependencyInjectorManager()
-    }
+  override fun onCreate() {
+    super.onCreate()
+    diManager = DependencyInjectorManager()
+  }
 
-    override val mainFactory: MainFactory
-        get() = diManager.mainFactory
+  override val mainFactory: MainFactory
+    get() = diManager.mainFactory
 }
