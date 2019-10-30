@@ -6,22 +6,21 @@ data class PhotoEntity(
   val id: String,
   val farm: Int,
   val secret: String,
-  val server: String,
-  val title: String
-) {
+  val server: String
+  ) {
+
   companion object {
     fun parseFromJson(json: JSONObject): PhotoEntity {
       return PhotoEntity(
         id = json.getString("id"),
         farm = json.getInt("farm"),
         secret = json.getString("secret"),
-        server = json.getString("server"),
-        title = json.getString("title")
+        server = json.getString("server")
       )
     }
   }
 
   fun toDomain(): Photo {
-    return Photo(id, farm, secret, server, title)
+    return Photo(id, "http://farm$farm.static.flickr.com/$server/${id}_$secret.jpg")
   }
 }

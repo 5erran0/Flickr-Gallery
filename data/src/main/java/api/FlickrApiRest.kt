@@ -18,13 +18,8 @@ class FlickrApiRest {
         .appendQueryParameter("api_key", "3e7cc266ae2b0e0d78e279ce8e361736")
         .appendQueryParameter("format", "json")
         .appendQueryParameter("nojsoncallback", "1").appendQueryParameter("safe_search", "1")
-
-      if (search.isNotEmpty()) {
-        url.appendQueryParameter("method", "flickr.photos.search")
-          .appendQueryParameter("text", search)
-      } else {
-        url.appendQueryParameter("method", "flickr.photos.getRecent")
-      }
+        .appendQueryParameter("method", "flickr.photos.search")
+        .appendQueryParameter("text", search)
 
       val json = JSONObject(URL(url.toString()).readText())
       PhotoPageEntity.parseFromJson(json.getJSONObject("photos"))

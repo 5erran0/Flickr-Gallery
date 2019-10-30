@@ -10,4 +10,7 @@ dependencies {
     implementation Libs.kotlin.coroutines.core
     implementation Libs.kotlin.coroutines.android
 
+    testImplementation Libs.junit
+    testImplementation Libs.mockito
+    testImplementation Libs.kotlin.coroutines.test
 }
