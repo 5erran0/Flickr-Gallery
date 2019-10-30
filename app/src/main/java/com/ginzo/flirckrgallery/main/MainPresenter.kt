@@ -30,16 +30,20 @@ class MainPresenter constructor(
     mainScope.coroutineContext.cancel()
   }
 
-  fun retrySearch() {
+  fun search(search: String) {
     view.render(MainViewState.Loading)
 
     mainScope.launch {
-      getFlickrImages()
+      getFlickrImages(search)
     }
   }
 
   private suspend fun getFlickrImages(search: String = "") {
-    val photoPage = searchPhotosUseCase.search(search)
-    view.render(MainViewState.ShowingFlickrImages(photoPage.photos))
+    if (search.isNotEmpty()) {
+      val photoPage = searchPhotosUseCase.search(search)
+      view.render(MainViewState.ShowingFlickrImages(photoPage.photos))
+    } else {
+      view.render(MainViewState.EmptySearch)
+    }
   }
 }

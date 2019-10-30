@@ -30,7 +30,11 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     retry.setOnClickListener {
-      presenter.retrySearch()
+      presenter.search(searchInput.text.toString())
+    }
+
+    btnSearch.setOnClickListener {
+      presenter.search(searchInput.text.toString())
     }
 
     lifecycle.addObserver(presenter)
@@ -42,17 +46,30 @@ class MainActivity : AppCompatActivity(), MainView {
         retry.visibility = View.VISIBLE
         progressBar.visibility = View.GONE
         photosList.visibility = View.GONE
+        typeSearch.visibility = View.GONE
+
       }
 
       is MainViewState.Loading -> {
         retry.visibility = View.GONE
         progressBar.visibility = View.VISIBLE
         photosList.visibility = View.GONE
+        typeSearch.visibility = View.GONE
+
+      }
+
+      is MainViewState.EmptySearch -> {
+        retry.visibility = View.GONE
+        progressBar.visibility = View.GONE
+        photosList.visibility = View.GONE
+        typeSearch.visibility = View.VISIBLE
       }
 
       is MainViewState.ShowingFlickrImages -> {
         retry.visibility = View.GONE
         progressBar.visibility = View.GONE
+        typeSearch.visibility = View.GONE
+
 
         photoListAdapter.photos = state.photos
 

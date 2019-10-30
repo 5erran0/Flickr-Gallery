@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Flirckr Gallery</string>
 
+    <string name="type_search_to_show_data">Write anything in the search to get images from flickr</string>
     <string name="retry">There was an error, retry?</string>
+    <string name="search">Search</string>
 </resources>

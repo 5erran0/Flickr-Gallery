@@ -9,5 +9,6 @@ interface MainView {
 sealed class MainViewState {
   object Error : MainViewState()
   object Loading : MainViewState()
+  object EmptySearch : MainViewState()
   data class ShowingFlickrImages(val photos: List<Photo>) : MainViewState()
 }
