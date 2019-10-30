@@ -19,9 +19,17 @@ class SearchPhotosUseCaseTest {
 
   @ExperimentalCoroutinesApi
   @Test
-  fun search() = runBlockingTest {
+  fun search_noPage() = runBlockingTest {
     useCase.search("")
 
-    verify(repository).search("")
+    verify(repository).search("", 1)
+  }
+
+  @ExperimentalCoroutinesApi
+  @Test
+  fun search_withPage() = runBlockingTest {
+    useCase.search("", 4)
+
+    verify(repository).search("", 4)
   }
 }

@@ -30,10 +30,33 @@ object Libs {
     val appCompat = "androidx.appcompat:appcompat:1.0.2"
     val lifecycle = "androidx.lifecycle:lifecycle-common-java8:2.0.0"
     val recyclerview = "androidx.recyclerview:recyclerview:1.0.0"
+
+    object test {
+      private const val version = "1.2.0"
+
+      const val core = "androidx.test:core:$version"
+      const val rules = "androidx.test:rules:$version"
+
+      object espresso {
+        private const val version = "3.2.0"
+
+        const val core = "androidx.test.espresso:espresso-core:$version"
+        const val contrib = "androidx.test.espresso:espresso-contrib:$version"
+        const val intents = "androidx.test.espresso:espresso-intents:$version"
+      }
+    }
   }
 
   const val junit = "junit:junit:4.12"
-  const val mockito = "org.mockito:mockito-core:2.23.0"
+
+  object mockito {
+    private val version = "2.23.0"
+
+    val core = "org.mockito:mockito-core:$version"
+    val inline = "org.mockito:mockito-inline:$version"
+    val android = "org.mockito:mockito-android:$version"
+  }
+
 }
 
 object Conf {

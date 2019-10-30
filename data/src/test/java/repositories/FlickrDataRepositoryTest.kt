@@ -19,9 +19,9 @@ class FlickrDataRepositoryTest {
   @ExperimentalCoroutinesApi
   @Test
   fun search() = runBlockingTest {
-    dataRepository.search("")
+    dataRepository.search("", 1)
 
-    verify(apiRepository).search("")
+    verify(apiRepository).search("", 1)
   }
 
   @ExperimentalCoroutinesApi

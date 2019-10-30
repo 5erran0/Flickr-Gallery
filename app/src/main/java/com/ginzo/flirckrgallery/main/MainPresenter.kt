@@ -42,10 +42,6 @@ class MainPresenter constructor(
     }
   }
 
-  private suspend fun getImageAsync(url: String) = mainScope.async {
-    getImageFromUrlUseCase.getImageFromUrl(url)
-  }
-
   fun search(search: String) {
     view.render(MainViewState.Loading)
 
@@ -71,6 +67,4 @@ class MainPresenter constructor(
       view.render(MainViewState.EmptySearch)
     }
   }
-
-
 }

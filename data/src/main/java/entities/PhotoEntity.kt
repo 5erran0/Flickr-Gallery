@@ -7,7 +7,7 @@ data class PhotoEntity(
   val farm: Int,
   val secret: String,
   val server: String
-  ) {
+) {
 
   companion object {
     fun parseFromJson(json: JSONObject): PhotoEntity {

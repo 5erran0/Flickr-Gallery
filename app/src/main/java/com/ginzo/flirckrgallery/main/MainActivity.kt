@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MainView {
 
-  private lateinit var presenter: MainPresenter
+  lateinit var presenter: MainPresenter
 
   private lateinit var photoListAdapter: PhotoListAdapter
 

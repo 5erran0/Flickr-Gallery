@@ -30,7 +30,6 @@ class FlickrApiRest {
 
   internal suspend fun getImageFromUrl(url: String): Bitmap = withContext(Dispatchers.IO) {
     val inputStream = URL(url).openStream()
-    val bitmap = BitmapFactory.decodeStream(inputStream)
-    bitmap
+    BitmapFactory.decodeStream(inputStream)
   }
 }

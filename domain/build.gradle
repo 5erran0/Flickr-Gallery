@@ -6,6 +6,7 @@ dependencies {
     implementation Libs.coreKtx
 
     testImplementation Libs.junit
-    testImplementation Libs.mockito
+    testImplementation Libs.mockito.core
+    testImplementation Libs.mockito.inline
     testImplementation Libs.kotlin.coroutines.test
 }

@@ -52,6 +52,13 @@ dependencies {
     implementation Libs.material
 
     testImplementation Libs.junit
-    testImplementation Libs.mockito
+    testImplementation Libs.mockito.core
+    testImplementation Libs.mockito.inline
     testImplementation Libs.kotlin.coroutines.test
+
+    androidTestImplementation Libs.androidx.test.rules
+    androidTestImplementation Libs.androidx.test.core
+    androidTestImplementation Libs.androidx.test.espresso.core
+    androidTestImplementation Libs.androidx.test.espresso.contrib
+    androidTestImplementation Libs.mockito.android
 }

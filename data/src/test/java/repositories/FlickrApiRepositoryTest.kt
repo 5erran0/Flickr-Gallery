@@ -1,13 +1,14 @@
 package repositories
 
 import api.FlickrApiRest
+import entities.PhotoPageEntity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import org.junit.Test
+import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.verifyNoMoreInteractions
+import org.mockito.Mockito.*
 
 class FlickrApiRepositoryTest {
   private val apiRest: FlickrApiRest = mock(FlickrApiRest::class.java)
@@ -22,9 +23,13 @@ class FlickrApiRepositoryTest {
   @ExperimentalCoroutinesApi
   @Test
   fun search() = runBlockingTest {
-    apiRepository.search("")
+    `when`(apiRest.getImagesBySearch("", 1)).thenReturn(
+      mock(PhotoPageEntity::class.java)
+    )
 
-    Mockito.verify(apiRest).getImagesBySearch("")
+    apiRepository.search("", 1)
+
+    verify(apiRest).getImagesBySearch("", 1)
   }
 
   @ExperimentalCoroutinesApi
@@ -32,6 +37,6 @@ class FlickrApiRepositoryTest {
   fun getImageFromUrl() = runBlockingTest {
     apiRepository.getImageFromUrl("")
 
-    Mockito.verify(apiRest).getImageFromUrl("")
+    verify(apiRest).getImageFromUrl("")
   }
 }
