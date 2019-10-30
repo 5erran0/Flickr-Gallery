@@ -3,6 +3,7 @@ package com.ginzo.flirckrgallery.main
 import android.graphics.Bitmap
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import entities.PhotoPage
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Main
 import usecases.GetImageFromUrlUseCase
@@ -15,6 +16,7 @@ class MainPresenter constructor(
 ) : DefaultLifecycleObserver {
 
   private lateinit var mainScope: CoroutineScope
+  private var photoPage: PhotoPage? = null
 
   private val handler = CoroutineExceptionHandler { _, _ ->
     view.render(MainViewState.Error)
@@ -40,6 +42,10 @@ class MainPresenter constructor(
     }
   }
 
+  private suspend fun getImageAsync(url: String) = mainScope.async {
+    getImageFromUrlUseCase.getImageFromUrl(url)
+  }
+
   fun search(search: String) {
     view.render(MainViewState.Loading)
 
@@ -48,12 +54,23 @@ class MainPresenter constructor(
     }
   }
 
+  fun getNextPage(search: String) {
+    mainScope.launch(handler) {
+      if (photoPage != null && photoPage!!.page < photoPage!!.pages) {
+        photoPage = searchPhotosUseCase.search(search)
+        view.render(MainViewState.ShowingFlickrImages(photoPage!!.photos))
+      }
+    }
+  }
+
   private suspend fun getFlickrImages(search: String = "") {
     if (search.isNotEmpty()) {
-      val photoPage = searchPhotosUseCase.search(search)
-      view.render(MainViewState.ShowingFlickrImages(photoPage.photos))
+      photoPage = searchPhotosUseCase.search(search)
+      view.render(MainViewState.ShowingFlickrImages(photoPage!!.photos))
     } else {
       view.render(MainViewState.EmptySearch)
     }
   }
+
+
 }

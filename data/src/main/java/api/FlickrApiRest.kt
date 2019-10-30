@@ -10,7 +10,7 @@ import org.json.JSONObject
 import java.net.URL
 
 class FlickrApiRest {
-  internal suspend fun getImagesBySearch(search: String): PhotoPageEntity =
+  internal suspend fun getImagesBySearch(search: String, page: Int): PhotoPageEntity =
     withContext(Dispatchers.IO) {
       val url = Uri.Builder()
 
@@ -22,6 +22,7 @@ class FlickrApiRest {
         .appendQueryParameter("nojsoncallback", "1").appendQueryParameter("safe_search", "1")
         .appendQueryParameter("method", "flickr.photos.search")
         .appendQueryParameter("text", search)
+        .appendQueryParameter("page", "$page")
 
       val json = JSONObject(URL(url.toString()).readText())
       PhotoPageEntity.parseFromJson(json.getJSONObject("photos"))

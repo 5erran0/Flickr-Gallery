@@ -10,11 +10,7 @@ import entities.Photo
 class PhotoListAdapter(
   private val getImageFromUrl: (String) -> Bitmap
 ) : RecyclerView.Adapter<PhotoViewHolder>() {
-  var photos: List<Photo> = emptyList()
-    set(value) {
-      field = value
-      notifyDataSetChanged()
-    }
+  private val photos: MutableList<Photo> = mutableListOf()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
     val view = LayoutInflater.from(parent.context).inflate(R.layout.item_photo, parent, false)
@@ -27,5 +23,10 @@ class PhotoListAdapter(
 
   override fun getItemCount(): Int {
     return photos.size
+  }
+
+  fun addPage(photosNewPage: List<Photo>) {
+    photos.addAll(photosNewPage)
+    notifyDataSetChanged()
   }
 }

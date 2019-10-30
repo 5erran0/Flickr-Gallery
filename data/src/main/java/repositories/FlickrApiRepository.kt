@@ -8,8 +8,8 @@ class FlickrApiRepository constructor(
   private val restApi: FlickrApiRest
 ) {
 
-  internal suspend fun search(text: String): PhotoPage {
-    return restApi.getImagesBySearch(text).toDomain()
+  internal suspend fun search(text: String, page: Int): PhotoPage {
+    return restApi.getImagesBySearch(text, page).toDomain()
   }
 
   internal suspend fun getImageFromUrl(url: String): Bitmap {
