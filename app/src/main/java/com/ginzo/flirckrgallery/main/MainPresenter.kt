@@ -17,6 +17,8 @@ class MainPresenter constructor(
   private lateinit var mainScope: CoroutineScope
 
   override fun onCreate(owner: LifecycleOwner) {
+    view.render(MainViewState.Loading)
+
     mainScope = CoroutineScope(Job() + Main)
 
     mainScope.launch {
@@ -28,8 +30,16 @@ class MainPresenter constructor(
     mainScope.coroutineContext.cancel()
   }
 
-  private suspend fun getFlickrImages() {
-    val photoPage = searchPhotosUseCase.search("")
-    view.render(MainViewState.ShowingFlickrImages(photoPage.photos.joinToString { it.title + " " }))
+  fun retrySearch() {
+    view.render(MainViewState.Loading)
+
+    mainScope.launch {
+      getFlickrImages()
+    }
+  }
+
+  private suspend fun getFlickrImages(search: String = "") {
+    val photoPage = searchPhotosUseCase.search(search)
+    view.render(MainViewState.ShowingFlickrImages(photoPage.photos))
   }
 }

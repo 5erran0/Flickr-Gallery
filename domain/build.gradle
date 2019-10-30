@@ -4,4 +4,8 @@ apply from: "$rootProject.projectDir/gradle/android-build.gradle"
 
 dependencies {
     implementation Libs.coreKtx
+
+    testImplementation Libs.junit
+    testImplementation Libs.mockito
+    testImplementation Libs.kotlin.coroutines.test
 }

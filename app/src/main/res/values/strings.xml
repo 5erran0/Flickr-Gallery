@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Flirckr Gallery</string>
+
+    <string name="retry">There was an error, retry?</string>
 </resources>

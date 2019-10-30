@@ -1,14 +1,19 @@
 package com.ginzo.flirckrgallery.main
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import com.ginzo.flirckrgallery.R
+import com.ginzo.flirckrgallery.main.adapter.PhotoListAdapter
 import com.ginzo.flirckrgallery.main.di.MainFactoryProvider
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MainView {
 
   private lateinit var presenter: MainPresenter
+
+  private lateinit var photoListAdapter: PhotoListAdapter
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -17,21 +22,41 @@ class MainActivity : AppCompatActivity(), MainView {
     presenter = (application as MainFactoryProvider).mainFactory
       .provideMainPresenter(this)
 
+    photoListAdapter = photosList.adapter as? PhotoListAdapter ?: PhotoListAdapter()
+
+    photosList.apply {
+      layoutManager = GridLayoutManager(context, 3)
+      adapter = photoListAdapter
+    }
+
+    retry.setOnClickListener {
+      presenter.retrySearch()
+    }
+
     lifecycle.addObserver(presenter)
   }
 
   override fun render(state: MainViewState) {
     when (state) {
       is MainViewState.Error -> {
-        /* no-op */
+        retry.visibility = View.VISIBLE
+        progressBar.visibility = View.GONE
+        photosList.visibility = View.GONE
       }
 
       is MainViewState.Loading -> {
-        /* no-op */
+        retry.visibility = View.GONE
+        progressBar.visibility = View.VISIBLE
+        photosList.visibility = View.GONE
       }
 
       is MainViewState.ShowingFlickrImages -> {
-        textView.text = state.string
+        retry.visibility = View.GONE
+        progressBar.visibility = View.GONE
+
+        photoListAdapter.photos = state.photos
+
+        photosList.visibility = View.VISIBLE
       }
     }
   }

@@ -43,10 +43,15 @@ dependencies {
 
     implementation Libs.androidx.appCompat
     implementation Libs.androidx.lifecycle
+    implementation Libs.androidx.recyclerview
 
     implementation Libs.coreKtx
 
     implementation Libs.constrainLayout
 
+    implementation Libs.material
+
     testImplementation Libs.junit
+    testImplementation Libs.mockito
+    testImplementation Libs.kotlin.coroutines.test
 }
