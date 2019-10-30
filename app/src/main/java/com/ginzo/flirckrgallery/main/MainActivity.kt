@@ -22,7 +22,8 @@ class MainActivity : AppCompatActivity(), MainView {
     presenter = (application as MainFactoryProvider).mainFactory
       .provideMainPresenter(this)
 
-    photoListAdapter = photosList.adapter as? PhotoListAdapter ?: PhotoListAdapter()
+    photoListAdapter = photosList.adapter as? PhotoListAdapter
+      ?: PhotoListAdapter() { presenter.getImageFromUrl(it)}
 
     photosList.apply {
       layoutManager = GridLayoutManager(context, 3)

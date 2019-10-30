@@ -1,5 +1,7 @@
 package api
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import entities.PhotoPageEntity
 import kotlinx.coroutines.Dispatchers
@@ -24,4 +26,10 @@ class FlickrApiRest {
       val json = JSONObject(URL(url.toString()).readText())
       PhotoPageEntity.parseFromJson(json.getJSONObject("photos"))
     }
+
+  internal suspend fun getImageFromUrl(url: String): Bitmap = withContext(Dispatchers.IO) {
+    val inputStream = URL(url).openStream()
+    val bitmap = BitmapFactory.decodeStream(inputStream)
+    bitmap
+  }
 }

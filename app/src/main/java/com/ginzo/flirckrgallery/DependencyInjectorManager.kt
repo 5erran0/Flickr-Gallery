@@ -18,7 +18,10 @@ class DependencyInjectorManager {
   }
 
   val mainFactory: MainFactory by lazy {
-    MainFactoryImpl(domainFactory.provideSearchPhotosUseCase())
+    MainFactoryImpl(
+      domainFactory.provideSearchPhotosUseCase(),
+      domainFactory.provideGetImageFromUrlUseCase()
+    )
   }
 
 }

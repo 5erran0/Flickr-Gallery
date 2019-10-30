@@ -26,4 +26,12 @@ class FlickrApiRepositoryTest {
 
     Mockito.verify(apiRest).getImagesBySearch("")
   }
+
+  @ExperimentalCoroutinesApi
+  @Test
+  fun getImageFromUrl() = runBlockingTest {
+    apiRepository.getImageFromUrl("")
+
+    Mockito.verify(apiRest).getImageFromUrl("")
+  }
 }

@@ -1,12 +1,15 @@
 package com.ginzo.flirckrgallery.main.adapter
 
+import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ginzo.flirckrgallery.R
 import entities.Photo
 
-class PhotoListAdapter() : RecyclerView.Adapter<PhotoViewHolder>() {
+class PhotoListAdapter(
+  private val getImageFromUrl: (String) -> Bitmap
+) : RecyclerView.Adapter<PhotoViewHolder>() {
   var photos: List<Photo> = emptyList()
     set(value) {
       field = value
@@ -15,7 +18,7 @@ class PhotoListAdapter() : RecyclerView.Adapter<PhotoViewHolder>() {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
     val view = LayoutInflater.from(parent.context).inflate(R.layout.item_photo, parent, false)
-    return PhotoViewHolder(view)
+    return PhotoViewHolder(view, getImageFromUrl)
   }
 
   override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {

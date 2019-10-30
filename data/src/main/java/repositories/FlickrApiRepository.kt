@@ -1,5 +1,6 @@
 package repositories
 
+import android.graphics.Bitmap
 import api.FlickrApiRest
 import entities.PhotoPage
 
@@ -9,5 +10,9 @@ class FlickrApiRepository constructor(
 
   internal suspend fun search(text: String): PhotoPage {
     return restApi.getImagesBySearch(text).toDomain()
+  }
+
+  internal suspend fun getImageFromUrl(url: String): Bitmap {
+    return restApi.getImageFromUrl(url)
   }
 }

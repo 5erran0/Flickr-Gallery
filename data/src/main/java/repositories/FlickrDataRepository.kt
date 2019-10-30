@@ -1,5 +1,6 @@
 package repositories
 
+import android.graphics.Bitmap
 import entities.PhotoPage
 
 class FlickrDataRepository constructor(
@@ -8,5 +9,9 @@ class FlickrDataRepository constructor(
 
   override suspend fun search(text: String): PhotoPage {
     return apiRepository.search(text)
+  }
+
+  override suspend fun getImageFromUrl(url: String): Bitmap {
+    return apiRepository.getImageFromUrl(url)
   }
 }

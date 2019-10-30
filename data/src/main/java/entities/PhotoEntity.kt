@@ -21,6 +21,6 @@ data class PhotoEntity(
   }
 
   fun toDomain(): Photo {
-    return Photo(id, "http://farm$farm.static.flickr.com/$server/${id}_$secret.jpg")
+    return Photo(id, "https://farm$farm.static.flickr.com/$server/${id}_$secret.jpg")
   }
 }

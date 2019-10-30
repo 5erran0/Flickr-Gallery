@@ -23,4 +23,12 @@ class FlickrDataRepositoryTest {
 
     verify(apiRepository).search("")
   }
+
+  @ExperimentalCoroutinesApi
+  @Test
+  fun getImageFromUrl() = runBlockingTest {
+    dataRepository.getImageFromUrl("")
+
+    verify(apiRepository).getImageFromUrl("")
+  }
 }
